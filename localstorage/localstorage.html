@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 50%;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 0 auto 20px auto;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+            width: calc(100% - 22px);
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .display-area {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            min-height: 40px;
+            word-wrap: break-word;
+        }
+
+        .explanation {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Comparaison : Avec et Sans LocalStorage</h1>
+
+    <!-- Section SANS LocalStorage -->
+    <div class="container">
+        <h2>Formulaire SANS LocalStorage</h2>
+        <form id="form-sans-ls">
+            <label for="email-sans-ls">Email :</label>
+            <input type="email" id="email-sans-ls" required>
+
+            <label for="pseudo-sans-ls">Pseudo :</label>
+            <input type="text" id="pseudo-sans-ls" required>
+
+            <button type="submit">Enregistrer (Temporaire)</button>
+        </form>
+        <div id="display-sans-ls" class="display-area">
+            Aucune donnée soumise pendant cette session.
+        </div>
+        <p class="explanation">
+            Entrez des données et cliquez sur "Enregistrer". Les données doivent s'afficher ci-dessus.
+            <strong>Après rechargement de la page, les données doivent avoir disparu.</strong>
+        </p>
+    </div>
+
+    <!-- Section AVEC LocalStorage -->
+    <div class="container">
+        <h2>Formulaire AVEC LocalStorage</h2>
+        <form id="form-avec-ls">
+            <label for="email-avec-ls">Email :</label>
+            <input type="email" id="email-avec-ls" required>
+
+            <label for="pseudo-avec-ls">Pseudo :</label>
+            <input type="text" id="pseudo-avec-ls" required>
+
+            <button type="submit">Enregistrer (LocalStorage)</button>
+        </form>
+        <div id="display-avec-ls" class="display-area">
+            Aucune donnée sauvegardée dans le LocalStorage.
+        </div>
+        <p class="explanation">
+            Entrez des données et cliquez sur "Enregistrer". Les données doivent s'afficher ci-dessus et être
+            sauvegardées.
+            <strong>Après rechargement de la page, les données doivent toujours être là !</strong>
+        </p>
+    </div>
+
+    <script>
+
+        /*-------------------------------------------------------------------
+         Création des constantes
+         -------------------------------------------------------------------*/
+
+        // Ciblage du formulaire
+        const form1 = document.getElementById('form-sans-ls');
+
+        // Ciblage de l'input email
+        const emailInput = document.getElementById('email-sans-ls');
+
+        // ciblage de l'input pseudo
+        const pseudoInput = document.getElementById('pseudo-sans-ls');
+
+        // Ciblage de la zone d'affichage des valeurs récupérées dans les inputs 
+        const displayDiv = document.getElementById('display-sans-ls');
+
+        /*-------------------------------------------------------------------
+        Fonction de rappel (callback)
+        -------------------------------------------------------------------*/
+        const getInfos = (e) => {
+            e.preventDefault();
+            displayDiv.innerHTML = `<p>email : <b>${emailInput.value}</b></p>`;
+            displayDiv.innerHTML += `<p>pseudo : <b>${pseudoInput.value}</b></p>`;
+        }
+
+        /*-------------------------------------------------------------------
+        Ecouteur d'événement
+        -------------------------------------------------------------------*/
+        form1.addEventListener('submit', getInfos);
+
+
+        /*************************************************************************
+         LOCALSTORAGE
+        ***************************************************************************/
+
+        /*-------------------------------------------------------------------
+     Création des constantes
+     -------------------------------------------------------------------*/
+
+        // Ciblage du formulaire
+        const form2 = document.getElementById('form-avec-ls');
+
+        // Ciblage de l'input email
+        const emailInput2 = document.getElementById('email-avec-ls');
+
+        // ciblage de l'input pseudo
+        const pseudoInput2 = document.getElementById('pseudo-avec-ls');
+
+        // Ciblage de la zone d'affichage des valeurs récupérées dans les inputs 
+        const displayDiv2 = document.getElementById('display-avec-ls');
+
+        /*-------------------------------------------------------------------
+        Fonction de rappel (callback)
+        -------------------------------------------------------------------*/
+        const getInfos2 = (e) => {
+            e.preventDefault();
+            displayDiv2.innerHTML = `<p>email : <b>${emailInput2.value}</b></p>`;
+            displayDiv2.innerHTML += `<p>pseudo : <b>${pseudoInput2.value}</b></p>`;
+
+
+
+
+            
+
+            // on stocke les données dans la zone de localStorage
+            window.localStorage.setItem('pseudo', pseudoInput2.value);
+        }
+
+        /*-------------------------------------------------------------------
+        Ecouteur d'événement
+        -------------------------------------------------------------------*/
+        form2.addEventListener('submit', getInfos2);
+
+        // on recupère les données de la zone de localStorage
+        const getPseudo = window.localStorage.getItem('pseudo');
+
+        // on écrit le pseudo dans la zonne d'affichage
+        displayDiv2.innerHTML = `<p>pseudo : <b>${getPseudo}</b></p>`;
+
+    </script>
+
+</body>
+
+</html>
