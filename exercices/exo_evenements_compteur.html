@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPTEUR</title>
+</head>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .counter-display {
+        font-size: 72px;
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #2c3e50;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        min-width: 120px;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    .increment {
+        background-color: rgba(46, 204, 113);
+        color: white;
+    }
+
+    .decrement {
+        background-color: rgba(231, 76, 60);
+        color: white;
+    }
+
+    .reset {
+        background-color: rgba(52, 152, 219);
+        color: white;
+    }
+
+    .settings {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+        margin: 10px 0;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #34495e;
+    }
+
+    input {
+        width: 100px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .history {
+        margin-top: 20px;
+        text-align: left;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .history-item {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .milestone {
+        color: #e67e22;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Compteur Interactif</h1>
+
+        <div id="counter" class="counter-display">0</div>
+
+        <div class="controls">
+            <button class="btn decrement">-1</button>
+            <button class="btn reset">Reset</button>
+            <button class="btn increment">+1</button>
+        </div>
+
+    </div>
+
+    <script>
+        const counter = document.getElementById('counter')
+        const btnIncrement = document.querySelector('.increment');
+        const btnDecrement = document.querySelector('.decrement');
+        const btnReset = document.querySelector('.reset');
+        console.log('counter :', counter);
+        console.log('btnIncrement:', btnIncrement);
+
+        // fonction chargée d'attribuer la bonne couleur d'affichage du compteur
+        const color = (counterValue, alpha = 0.5) => {
+
+            let counterColor;
+
+            if (counterValue > 0) {
+                counterColor = `rgba(46, 204, 113, ${alpha})`;
+            } else if (counterValue < 0) {
+                counterColor = `rgba(231, 76, 60, ${alpha})`;
+            } else {
+                counterColor = `rgba(52, 152, 219, ${alpha})`;
+            }
+
+            return counterColor;
+        }
+
+        const incrementer = () => {
+            // Récupération du contenu de la div (chaîne de caractère) que l'on va transformer en nombre.
+            let counterContent = Number(counter.innerText);
+            counter.innerText = counterContent + 1;
+            // Loguer en console la couleur que retourne la fonction color
+            console.log('code couleur : ', color(counter.innerText));
+            counter.style.color = color(counter.innerText);
+        }
+
+
+        const decrementer = () => {
+            // Récupération du contenu de la div (chaîne de caractère) que l'on va transformer en nombre.
+            let counterContent = Number(counter.innerText);
+            counter.innerText = counterContent - 1;
+            counter.style.color = color(counter.innerText);
+        }
+
+        const reset = () => {
+            counter.innerText = 0;
+            counter.style.color = '#3498db';
+        }
+
+
+        btnDecrement.addEventListener('click', decrementer);
+        btnReset.addEventListener('click', reset);
+        btnIncrement.addEventListener('click', incrementer);
+
+
+    </script>
+</body>
+
+</html>
