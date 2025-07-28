@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Cours</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --primary-color-hover: #388E3C;
+            --secondary-color: #007BFF;
+            --text-color: #333;
+            --border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .course-manager {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-manager__title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+
+        .course-form {
+            font-size: 1.6rem;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-form__group {
+            margin-bottom: 1.5rem;
+        }
+
+        .course-form__label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .course-form__input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1.6rem;
+        }
+
+        .course-form__button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+
+        .course-form__button:hover {
+            background-color: var(--primary-color-hover);
+        }
+
+        .course-list {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="course-manager">
+        <h1 class="course-manager__title">Gestionnaire de Cours 📚</h1>
+
+        <!-- Formulaire -->
+        <form class="course-form" id="courseForm">
+            <div class="course-form__group">
+                <label class="course-form__label" for="langage">Langage :</label>
+                <select class="course-form__input" id="langage">
+                    <option value="html">HTML 🌐</option>
+                    <option value="css">CSS 🎨</option>
+                    <option value="python">Python 🐍</option>
+                    <option value="php">PHP 🐘</option>
+                </select>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="title">Titre :</label>
+                <input class="course-form__input" type="text" id="title" required>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="description">Description :</label>
+                <textarea class="course-form__input" id="description" required></textarea>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="level">Niveau :</label>
+                <select class="course-form__input" id="level">
+                    <option value="0">Débutant 🌱</option>
+                    <option value="1">Intermédiaire 🌿</option>
+                    <option value="2">Avancé 🌳</option>
+                    <option value="3">Expert 🎓</option>
+                </select>
+            </div>
+
+            <button class="course-form__button" type="submit">Ajouter un cours</button>
+        </form>
+
+        <!-- Liste des cours -->
+        <div class="course-list" id="courseList"></div>
+    </div>
+</body>
+
+</html>

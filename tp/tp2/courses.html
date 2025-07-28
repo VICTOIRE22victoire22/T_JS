@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Cours</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --primary-color-hover: #388E3C;
+            --secondary-color: #007BFF;
+            --text-color: #333;
+            --border-radius: 5px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-size: 1.6rem;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .course-manager {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .course-manager__title {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+
+        .course-form {
+            font-size: 1.6rem;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-form__group {
+            margin-bottom: 1.5rem;
+        }
+
+        .course-form__label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .course-form__input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1.6rem;
+        }
+
+        .course-form__button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+
+        .course-form__button:hover {
+            background-color: var(--primary-color-hover);
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            max-width: 70%;
+            margin: 20px auto;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-list__item {
+            /* width: 300px; */
+            box-shadow: 2px 5px rgba(3, 12, 3, 0.219);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 1.5rem;
+        }
+
+        .course-list__item--level-0 {
+            background-color: rgb(182, 255, 182);
+        }
+
+        .course-list__item--level-1 {
+            background-color: rgb(182, 238, 255);
+        }
+
+        .course-list__item--level-2 {
+            background-color: rgb(251, 255, 182);
+        }
+
+        .course-list__item--level-3 {
+            background-color: rgb(255, 183, 182);
+        }
+
+        /* Recherche */
+        .course-search {
+            max-width: 70%;
+            margin: 20px auto;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="course-manager">
+        <h1 class="course-manager__title">Gestionnaire de Cours 📚</h1>
+
+        <!-- Formulaire -->
+        <form class="course-form" id="courseForm">
+            <div class="course-form__group">
+                <label class="course-form__label" for="langage">Langage :</label>
+                <select class="course-form__input" id="langage">
+                    <option value="html">HTML 🌐</option>
+                    <option value="css">CSS 🎨</option>
+                    <option value="python">Python 🐍</option>
+                    <option value="php">PHP 🐘</option>
+                </select>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="title">Titre :</label>
+                <input class="course-form__input" type="text" id="title" required>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="description">Description :</label>
+                <textarea class="course-form__input" id="description" required></textarea>
+            </div>
+
+            <div class="course-form__group">
+                <label class="course-form__label" for="level">Niveau :</label>
+                <select class="course-form__input" id="level">
+                    <option value="0">Débutant 🌱</option>
+                    <option value="1">Intermédiaire 🌿</option>
+                    <option value="2">Avancé 🌳</option>
+                    <option value="3">Expert 🎓</option>
+                </select>
+            </div>
+
+            <button class="course-form__button" type="submit">Ajouter un cours</button>
+        </form>
+
+        <!-- Zone de recherche de cours -->
+        <div class="course-search">
+            <label for="search" style="display: block">Rechercher un cours :</label>
+            <input type="text" id="search" aria-label="Champ de recherche de cours">
+        </div>
+
+        <!-- Liste des cours -->
+        <div class="course-list" id="courseList"></div>
+    </div>
+
+    <script>
+
+        // Création d'un tableau de stockage des cours
+        let courseArray = [];
+
+        // Ciblage du formulaire, des inputs et de la liste de cours
+        const courseForm = document.getElementById('courseForm');
+        const courseFormInputLangage = document.getElementById('langage');
+        const courseFormInputTitle = document.getElementById('title');
+        const courseFormInputDescription = document.getElementById('description');
+        const courseFormeInputLevel = document.getElementById('level');
+        const courseList = document.getElementById('courseList')
+
+        // recherche
+        const searchInput = document.getElementById('search');
+        console.log('findInput:', searchInput);
+
+        // Coder une fonction qui affiche la liste des cours sous le formulaire.
+        const createCourse = (e) => {
+            console.log('createCourse appelée :', createCourse);
+            e.preventDefault();
+            const langage = courseFormInputLangage.value;
+            const title = courseFormInputTitle.value;
+            const description = courseFormInputDescription.value;
+            const level = courseFormeInputLevel.value;
+            // const level = courseFormeInputLevel.options[courseFormeInputLevel.selectedIndex].text;
+
+            // création d'un objet avec les données récupérées
+            let newCourse = {
+                langage,
+                title,
+                description,
+                level
+            };
+
+            console.log('newCourse:', newCourse);
+
+
+            // on place l'objet dans le tableau
+            // courseArray.push(newCourse);
+
+            // Aller récupérer le tableau situé dans le localStorage SI IL EXISTE
+            // Si la clé n'existe pas cela signifie qu'aucun cours n'a jamais été créée auparavant
+            // Il faut donc crée un tableau vide afin d'y déposer le premier cours.
+            let arrCourses = JSON.parse(localStorage.getItem('cours')) || [];
+            console.log('arrCourses :', arrCourses);
+
+
+            // on place le cours crée (newCourse) à la fin du tableau récupéré (arrCourses)
+            arrCourses.push(newCourse);
+            console.log('arrCourses :', arrCourses);
+
+
+            // on stocke le tableau sérialisé dans la zone localStorage du navigateur
+            localStorage.setItem('cours', JSON.stringify(arrCourses));
+
+            // courseAffichage();
+            displayCourses(arrCourses);
+
+            // réinitialisation du formualaire
+            courseForm.reset();
+
+            console.log('New Course = ', newCourse);
+            console.log('Cours présents dans le tableau =', courseArray);
+        }
+
+        const courseAffichage = () => {
+            courseList.innerHTML = '';
+            courseArray.forEach(course => {
+                const courseItem = document.createElement('div');
+                courseItem.classList.add('course-list__item', `course-list__item--level-${course.level}`);
+                console.log('course.level: ', course.level);
+                courseItem.innerHTML = `
+        <h3 class="course-list__item__title">${course.title}</h3>
+        <p class="course-list__item__lng"><strong>Langage :</strong> ${course.langage}</p>
+        <p class="course-list__item__dscr"><strong>Description :</strong> ${course.description}</p>
+        <p class="course-list__item__level"><strong>Niveau :</strong> ${course.level}</p>`;
+
+                courseList.appendChild(courseItem);
+            });
+        };
+
+        // Fonction qui va lire la totalité des informations des cours présents dans le localStorage et les afficher à l'écran
+        const displayCourses = (arrData) => {
+
+            // on boucle sur le tableau arrData afin d'afficher les données dans la div de classe 'course-list'
+            courseList.innerHTML = '';
+            arrData.forEach(course => {
+                const courseItem = document.createElement('div');
+                courseItem.classList.add('course-list__item', `course-list__item--level-${course.level}`);
+                console.log('course.level: ', course.level);
+                courseItem.innerHTML = `
+        <h3 class="course-list__item__title">${course.title}</h3>
+        <p class="course-list__item__lng"><strong>Langage :</strong> ${course.langage}</p>
+        <p class="course-list__item__dscr"><strong>Description :</strong> ${course.description}</p>
+        <p class="course-list__item__level"><strong>Niveau :</strong> ${course.level}</p>`;
+                courseList.appendChild(courseItem);
+            });
+        }
+
+        // FILTRAGE DES COURS
+        const search = () => {
+            // Récupérer les données du localStorage
+            const arrData = JSON.parse(localStorage.getItem('cours')) || [];
+            console.log('addData depuis search:', arrData);
+            console.log('typeof arrData', typeof arrData);
+
+
+            courseList.innerHTML = '';
+
+            const pattern = searchInput.value.toLowerCase();
+            console.log('pattern:', pattern);
+
+            const filteredCourses = arrData.filter(course => course.title.includes(pattern) || course.description.includes(pattern));
+
+            filteredCourses.forEach(course => {
+                const courseItem = document.createElement('div');
+                courseItem.classList.add('course-list__item', `course-list__item--level-${course.level}`);
+                courseItem.innerHTML = `
+        <h3 class="course-list__item__title">${course.title}</h3>
+        <p class="course-list__item__lng"><strong>Langage :</strong> ${course.langage}</p>
+        <p class="course-list__item__dscr"><strong>Description :</strong> ${course.description}</p>
+        <p class="course-list__item__level"><strong>Niveau :</strong> ${course.level}</p>`;
+                courseList.appendChild(courseItem);
+            });
+        }
+
+
+
+        // recherche
+        searchInput.addEventListener('input', search)
+
+        courseForm.addEventListener('submit', createCourse);
+        // L'affichage des cours présents dans le localStorage est réalmise part le noued document qui est écoute l'événement 'DOMContentLoaded'
+        // documennt affichera tous les cours dans la zone adéquate dès qu'il aura chargé le DOM dans sa totalité
+        document.addEventListener('DOMContentLoaded', () => {
+            // lecture du localStorage
+            let arrCourses = JSON.parse(localStorage.getItem('cours')) || [];
+            displayCourses(arrCourses);
+        });
+
+    </script>
+</body>
+
+</html>
