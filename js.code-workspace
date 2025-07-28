@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "New Moon",
+		"editor.formatOnSave": true,
+		"editor.tabSize": 4,
+		"liveServer.settings.CustomBrowser": "chrome",
+	},
+}
