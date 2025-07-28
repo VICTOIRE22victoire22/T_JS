@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <link rel="stylesheet" href="./dom.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Apprentissage du DOM</h1>
+        <p>Ce document présente les notions de base pour manipuler le DOM avec JavaScript.
+            <br>Chaque section est dédiée à une méthode ou un concept spécifique.
+        </p>
+    </header>
+
+    <details open>
+        <summary class="dom__summary">Sélectionner des éléments du DOM</summary>
+        <!-- section#getElementByid>div*3 -->
+        <section id="dom__selecteurs" class="dom__section">
+            <h2 class="dom__title">Sélectionner des éléments du DOM</h2>
+            <p class="dom__description">Les sélecteurs permettent de cibler des éléments HTML dans le DOM pour les
+                manipuler.</p>
+            <ul class="dom__list">
+                <li><code>getElementById</code> : Sélectionne un élément par son ID</li>
+                <li><code>getElementsByClassName</code> : Sélectionne des éléments par leur classe (HTMLCollection)</li>
+                <li><code>getElementsByTagName</code> : Sélectionne des éléments par leur nom de balise (HTMLCollection)
+                </li>
+                <li><code>querySelector</code> : Sélectionne le premier élément correspondant à un sélecteur CSS</li>
+                <li><code>querySelectorAll</code> : Sélectionne tous les éléments correspondant à un sélecteur CSS
+                    (Nodelist)</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>getElementById('nom_id')</code>
+                <code>getElementByClasssName('nom_de_la_classe')</code>
+                <code>getElementByTagName('nom_de_la_balise')</code>
+                <code>querySelector('selecteur_css')</code>
+                <code>querySelectorAll('selecteur_css')</code>
+            </blockquote>
+            <article id="getId" class="dom__article">
+                <div>Je suis la première div.</div>
+                <p class="red-text">Je suis un paragraphe.</p>
+                <div>Je suis la seconde div.</div>
+                <span class="red-text">Je suis une span.</span>
+            </article>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Parcourir les éléments du DOM</summary>
+        <section id="dom__parcours" class="dom__section">
+            <h2 class="dom__title">Parcourir les éléments du DOM</h2>
+            <p class="dom__description">Ces méthodes permettent de naviguer entre les éléments du DOM, comme les
+                enfants,
+                les parents ou les frères et sœurs.</p>
+            <ul class="dom__list">
+                <li><code>parentElement</code> : Sélectionne le noeud Elément parent d'un élément</li>
+                <li><code>children</code> : Sélectionne les noeuds Eléments enfants d'un élément</li>
+                <li><code>firstElementChild</code> : Sélectionne le premier noeud Elément enfant d'un élément</li>
+                <li><code>lastElementChild</code> : Sélectionne le dernier noeud Elément enfant d'un élément</li>
+                <li><code>nextElementSibling</code> : Sélectionne le noeud Elément frère suivant d'un élément</li>
+                <li><code>previousElementSibling</code> : Sélectionne le noeud Elément frère précédent d'un élément</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>element.parentElement</code>
+                <code>element.children</code>
+                <code>element.firstElementChild</code>
+                <code>element.lastElementChild</code>
+                <code>element.nextElementSibling</code>
+            </blockquote>
+            <article id="nextSibling" class="dom__article">
+                <!-- ul>li+li>span+a+p^li -->
+                <ul>
+                    <li>Premier li</li>
+                    <li>
+                        <span>span</span>
+                        <a href="">lien</a>
+                        <p>paragraphe</p>
+                    </li>
+                    <li>Dernier li</li>
+                </ul>
+                </a>
+            </article>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Modifier le contenu du DOM</summary>
+        <section id="dom__modification" class="dom__section">
+            <h2 class="dom__title">Modifier le contenu du DOM</h2>
+            <p class="dom__description">Ces méthodes permettent de modifier le contenu ou la structure des éléments
+                HTML.
+            </p>
+            <ul class="dom__list">
+                <li><code>textContent</code> : Modifie le contenu textuel d'un élément</li>
+                <li><code>innerHTML</code> : Modifie le contenu HTML d'un élément</li>
+                <li><code>innerText</code> : Modifie le texte visible d'un élément</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>element.textContent</code>
+                <code>element.innerHTML</code>
+                <code>element.innerText</code>
+            </blockquote>
+            <article class="dom__article">
+                <!-- div>p*3 -->
+                <div>
+                    <p>Je suis le <b>premier</b> paragraphe<span style="display:none">fantome</span></p>
+                    <p>Je suis le <b>second</b> paragraphe.<span style="display:none">fantome</span></p>
+                    <p>Je suis le <b>dernier </b>paragraphe.</p>
+                </div>
+            </article>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Modifier les classes du DOM</summary>
+        <section id="dom__classes" class="dom__section">
+            <h2 class="dom__title">Modifier les classes du DOM</h2>
+            <p class="dom__description">Ces méthodes permettent de manipuler les classes CSS des éléments HTML.</p>
+            <ul class="dom__list">
+                <li><code>classList.add</code> : Ajoute une classe à un élément</li>
+                <li><code>classList.remove</code> : Supprime une classe d'un élément</li>
+                <li><code>classList.toggle</code> : Ajoute ou supprime une classe d'un élément selon sa présence</li>
+                <li><code>classList.contains</code> : Vérifie si un élément a une classe spécifique</li>
+                <li><code>classList.replace</code> : Remplace une classe par une autre sur un élément</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>element.classList.add('nomClasse')</code>
+                <code>element.classList.remove('nomClasse')</code>
+                <code>element.classList.toggle('nomClasse')</code>
+                <code>element.classList.contains('nomClasse')</code>
+                <code>element.classList.replace('ancienneClasse', 'nouvelleClasse')</code>
+            </blockquote>
+            <article class="dom__article">
+                <!-- div>p*3 -->
+                <div>
+                    <p class="bleu blanc rouge">Paragraphe n°1.</p>
+                    <p class="rouge"></p>
+                    <p class="rouge">Paragrapahe n°3</p>
+                    <p>Paragraphe n°4</p>
+                    <p class="rouge">Paragraphe n°5</p>
+                </div>
+            </article>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Modifier le style du DOM</summary>
+        <section id="dom__css" class="dom__section">
+            <h2 class="dom__title">Modifier le style du DOM</h2>
+            <p class="dom__description">Ces méthodes permettent de
+                changer le style d'un élément.</p>
+            </p>
+            <ul class="dom__list">
+                <li><code>style</code> : Modifie le style CSS d'un élément</li>
+                <li><code>setAttribute</code> : Modifie un attribut d'un élément</li>
+                <li><code>getAttribute</code> : Récupère la valeur d'un attribut d'un élément</li>
+                <li><code>removeAttribute</code> : Supprime un attribut d'un élément</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>element.style.property = 'valeur'</code>
+                <code>element.setAttribute('attribut', 'valeur')</code>
+                <code>element.getAttribute('attribut')</code>
+                <code>element.removeAttribute('attribut')</code>
+            </blockquote>
+            <article class="dom__article">
+                <!-- div>p*3 -->
+                <div>
+                    <p class="bleu">Paragraphe n°1.</p>
+                    <p class="rouge">Paragraphe n°2.</p>
+                </div>
+            </article>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Supprimer un noeud du DOM</summary>
+        <section id="dom__remove" class="dom__section">
+            <h2 class="dom__title">Supprimer un noeud du DOM</h2>
+            <p class="dom__description">Cete méthode retire définitivement un noeud du DOM.</p>
+            <ul class="dom__list">
+                <li><code>remove()</code> : retire un noeud du DOM</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>node.remove()</code>
+            </blockquote>
+            <article class="dom__article">
+                <div>Elément n°1.</div>
+                <div class="rouge">Elément n°3</div>
+            </article>
+
+            <template>
+                <div>
+                    <p>Je suis un nouveau paragraphe provenant de la balise template.</p>
+                </div>
+            </template>
+        </section>
+    </details>
+
+    <details>
+        <summary class="dom__summary">Créer des éléments dans le DOM</summary>
+        <section id="dom__create" class="dom__section">
+            <h2 class="dom__title">Créer des éléments dans le DOM</h2>
+            <p class="dom__description">Ces méthodes permettent de créer de nouveaux éléments dans le DOM.</p>
+            <ul class="dom__list">
+                <li><code>createElement</code> : Crée un nouvel élément HTML</li>
+                <li><code>createTextNode</code> : Crée un nouveau noeud de texte</li>
+                <li><code>appendChild</code> : Ajoute un enfant à un élément</li>
+                <li><code>insertBefore</code> : Insère un élément avant un autre élément</li>
+            </ul>
+            <blockquote class="dom__blockquote">
+                <span>Syntaxe :</span>
+                <code>document.createElement('nomBalise')</code>
+                <code>document.createTextNode('texte')</code>
+                <code>element.appendChild(nouvelEnfant)</code>
+                <code>element.insertBefore(nouvelEnfant, elementExistant)</code>
+            </blockquote>
+            <article class="dom__article">
+                <!-- div>p*3 -->
+                <div class="bleu">Div n°1.</div>
+                <div class="rouge">Div n°3</div>
+            </article>
+
+            <template>
+                <div>
+                    <p>Je suis un nouveau paragraphe provenant de la balise template.</p>
+                </div>
+            </template>
+        </section>
+    </details>
+
+    <script src=" ./dom.js">
+    </script>
+</body>
+
+</html>

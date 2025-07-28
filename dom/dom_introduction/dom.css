@@ -1,0 +1,223 @@
+@import url('./reset.css');
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --background-color: #f5f6fa;
+    --text-color: #2d3436;
+    --border-color: #dcdde1;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+header p {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.6rem;
+    padding: 2rem;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+
+.bleu {
+    color: var(--secondary-color);
+}
+
+.blanc {
+    color: #ffffff;
+}
+
+.rouge {
+    color: var(--accent-color);
+}
+
+details {
+    margin-bottom: 4rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+details[open] summary {
+    visibility: hidden;
+}
+
+details[open] summary::before {
+    content: "▼ Fermer";
+    visibility: visible;
+    font-size: 2rem;
+    color: #2c3e50;
+    position: absolute;
+    left: 0;
+}
+
+summary {
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+
+.dom__section {
+    border: solid 3px var(--border-color);
+    border-radius: 1rem;
+    position: relative;
+    padding: 2rem 4rem;
+    margin: 2rem 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dom__section::before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dom__article {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.dom__title {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 1rem;
+}
+
+.dom__description {
+    font-size: 1.8rem;
+    text-align: justify;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.dom__blockquote {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    text-align: left;
+    margin: 2rem 0;
+    padding: 0.5rem 1rem;
+    background-color: rgb(139, 134, 132);
+    color: #ffffff;
+    border-radius: 1rem;
+}
+
+.dom__blockquote span {
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: #c9312b;
+    color: #ffffff;
+    align-self: flex-start;
+    border-radius: 8px;
+    padding: 0.2rem 1rem;
+}
+
+.dom__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dom__list code {
+    font-size: 1.6rem;
+    padding: 0.4rem 1.2rem;
+    background-color: #ffffff;
+    color: var(--primary-color);
+    border-radius: 0.5rem;
+    font-family: 'Consolas', monospace;
+}
+
+/* Sections spécifiques */
+section#dom__selecteurs::before {
+    content: 'Sélection';
+}
+
+section#dom__parcours::before {
+    content: 'Parcours';
+}
+
+section#dom__modification::before {
+    content: 'Contenu';
+}
+
+section#dom__classes::before {
+    content: 'Classes';
+
+}
+
+section#dom__css::before {
+    content: 'Style';
+}
+
+section#dom__remove::before {
+    content: 'Suppression';
+}
+
+section#dom__create::before {
+    content: 'Création';
+}
+
+.red-text {
+    color: var(--accent-color);
+}

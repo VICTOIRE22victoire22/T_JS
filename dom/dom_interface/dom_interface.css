@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    padding: 2rem;
+}
+
+
+nav {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #c32424;
+}
+
+.card {
+    background-color: #40d87f;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+}
+
+/*---------------------------------------------------------
+footer
+----------------------------------------------------------*/
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.footer__info,
+.footer__contact {
+    text-align: center;
+    margin: 5px 0;
+}
