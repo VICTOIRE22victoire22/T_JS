@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+
+        .user-form {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        .user-form__label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+
+        .user-form__input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+
+        .user-form__input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+
+        .user-form__message {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9f5ff;
+            border-left: 4px solid #007bff;
+            color: #333;
+            font-size: 0.95rem;
+            min-height: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" class="user-form">
+
+        <label for="pseudo" class="user-form__label">Pseudo:</label>
+        <input type="text" name="pseudo" id="pseudo" class="user-form__input" placeholder="Entrez votre pseudo...">
+        <div id="message-display" class="user-form__message"></div>
+    </form>
+
+    <script>
+        /*
+        - Tapper du texte dans la zone input.
+        - Placer un écouteur sur le noeud élement "input".
+        - Ecouter l'événément "input"
+        - La fonction de rappel doit afficher "Bonjour" dans le noeud élément div dès lors que vous avez commencé à tapper du texte dans le champ input de la page.
+        */
+
+        const div = document.querySelector('div');
+        const input = document.querySelector('input');
+        input.addEventListener('input', () => {
+            // if (input.value === '') {
+            //     div.innerText = '';
+            // } else {
+            //     div.innerText = 'Bonjour !'
+            // }
+
+            // (input.value === '') ? div.innerText = '' : div.innerText = 'Bonjour !';
+
+
+            // Le contenu textuel de la div sera une chaine vide si rien n'est écrit dans l'input sinon de ce sera "Bonjour!"'
+            div.innerText = (input.value === '') ? '' : 'Bonjour !';
+        })
+    </script>
+</body>
+
+</html>

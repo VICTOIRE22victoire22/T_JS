@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Événements Javascript liés au clavier.</h1>
+    <script>
+        // Le fond de la page devient rose dès qu'une touche du clavier est appuyée (événement "keydown")
+        const body = document.body;
+
+        body.addEventListener('keyup', () => {
+            body.style.backgroundColor = 'pink';
+        })
+    </script>
+</body>
+
+</html>

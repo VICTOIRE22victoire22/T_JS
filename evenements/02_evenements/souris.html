@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOURIS</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    button {
+      font-size: large;
+      width: 200px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #e87777;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+      transition: width 2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #a2e877;
+    }
+
+    button:active {
+      background-color: #eebc61;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Événements Javascript liés à la souris.</h1>
+  <button id="simpleClick">click</button>
+  <button id="doubleClick">dblclick</button>
+  <button id="mouseOver">mouseover</button>
+  <button id="mouseOut">mouseout</button>
+  <button id="contextMenu">contextmenu</button>
+  <button id="mouseDown">mousedown</button>
+  <button id="mouseUp">mouseup</button>
+  <button id="mouseMove">mousemove</button>
+
+  <script>
+    // Cibler tous les boutons
+    const btns = document.querySelectorAll('button');
+
+    // On va appliquer une boucle forEach sur la nodeList btns
+    btns.forEach(btn => {
+      // ajout d'un écouteur d'événement sur le bouton
+      btn.addEventListener(btn.innerText, () => {
+        btn.style.width = '300px';
+      });
+    });
+
+  </script>
+</body>
+
+</html>
